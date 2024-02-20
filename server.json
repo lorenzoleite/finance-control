@@ -9,22 +9,6 @@
       "id": 1
     },
     {
-      "description": "Hamburger",
-      "type": "outcome",
-      "category": "Alimentação",
-      "price": 60,
-      "createdAt": "2022-07-29T16:36:44.505z",
-      "id": 2
-    },
-    {
-      "description": "Futebol",
-      "price": 16,
-      "category": "Esporte",
-      "type": "outcome",
-      "createdAt": "2024-02-08T05:11:41.850Z",
-      "id": 3
-    },
-    {
       "description": "Josefina",
       "price": 130,
       "category": "Alimentação",

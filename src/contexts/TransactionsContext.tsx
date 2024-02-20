@@ -1,27 +1,15 @@
-import { ReactNode, useEffect, useState, useCallback } from 'react';
+import { ReactNode, useCallback, useEffect, useState } from 'react';
 import { createContext } from 'use-context-selector';
+import { Transaction } from '../interfaces/Transaction';
 import { api } from '../lib/axios';
 
-interface Transaction {
-  id: number;
-  description: string;
-  type: 'income' | 'outcome';
-  price: number;
-  category: string;
-  createdAt: string;
-}
-
-interface CreateTransactionInput {
-  description: string;
-  price: number;
-  category: string;
-  type: 'income' | 'outcome';
-}
+type CreateTransactionInput = Omit<Transaction, 'id' | 'createdAt'>;
 
 interface TransactionContextType {
   transactions: Transaction[];
   fetchTransactions: (query?: string) => Promise<void>;
   createTransactions: (data: CreateTransactionInput) => Promise<void>;
+  deleteTransaction: (id: number) => Promise<void>;
 }
 
 interface TransactionsProviderProps {
@@ -57,9 +45,17 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
         createdAt: new Date()
       });
 
-      setTransactions(state => [response.data, ...state]);
+      setTransactions(state => [...state, response.data]);
     },
     []
+  );
+
+  const deleteTransaction = useCallback(
+    async (id: number) => {
+      await api.delete(`/transactions/${id}`);
+      fetchTransactions();
+    },
+    [fetchTransactions]
   );
 
   useEffect(() => {
@@ -68,7 +64,12 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
 
   return (
     <TransactionsContext.Provider
-      value={{ transactions, fetchTransactions, createTransactions }}
+      value={{
+        transactions,
+        fetchTransactions,
+        createTransactions,
+        deleteTransaction
+      }}
     >
       {children}
     </TransactionsContext.Provider>

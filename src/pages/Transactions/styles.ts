@@ -29,6 +29,20 @@ export const TransactionsTable = styled.table`
   }
 `;
 
+export const DeleteButton = styled.button`
+  background: transparent;
+  border-radius: 6px;
+  padding: 0.2rem;
+  line-height: 0;
+  border: 0;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+`;
+
 interface PriceHighLightProps {
   variant: 'income' | 'outcome';
 }

@@ -1,10 +1,13 @@
-import { SummaryCard, SummaryContainer } from './styled';
 import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from 'phosphor-react';
-import { priceFormatter } from '../../utils/formatter';
 import { useSummary } from '../../hooks/useSummary';
+import { priceFormatter } from '../../utils/formatter';
+
+import { SummaryCard, SummaryContainer } from './styled';
 
 export function Summary() {
   const summary = useSummary();
+
+  const hasPositiveTotal = summary.total > 0;
 
   return (
     <SummaryContainer>
@@ -26,7 +29,7 @@ export function Summary() {
         <strong>{priceFormatter.format(summary.outcome)}</strong>
       </SummaryCard>
 
-      <SummaryCard variant="green">
+      <SummaryCard variant={hasPositiveTotal ? 'green' : 'red'}>
         <header>
           <span>Total</span>
           <CurrencyDollar size={32} color="#fff" />
