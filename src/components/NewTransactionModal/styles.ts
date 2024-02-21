@@ -2,6 +2,11 @@ import styled from 'styled-components';
 import * as Dialog from '@radix-ui/react-dialog';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 
+export const Description = styled(Dialog.Description)`
+  color: ${props => props.theme['gray-400']};
+  margin-top: 0.5rem;
+`;
+
 export const Overlay = styled(Dialog.Overlay)`
   position: fixed;
   width: 100vw;
@@ -64,7 +69,7 @@ export const Content = styled(Dialog.Content)`
   }
 `;
 
-export const CloseButton = styled(Dialog.Close)`
+export const TopCloseButton = styled(Dialog.Close)`
   position: absolute;
   background: transparent;
   border: 0;

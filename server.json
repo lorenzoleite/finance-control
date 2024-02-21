@@ -9,12 +9,20 @@
       "id": 1
     },
     {
-      "description": "Josefina",
-      "price": 130,
-      "category": "Alimentação",
+      "description": "Futebol",
+      "price": 10,
+      "category": "Lazer",
       "type": "outcome",
-      "createdAt": "2024-02-08T05:21:23.379Z",
+      "createdAt": "2024-02-21T04:57:41.182Z",
       "id": 4
+    },
+    {
+      "description": "Cinema",
+      "price": 25,
+      "category": "Lazer",
+      "type": "outcome",
+      "createdAt": "2024-02-21T04:59:26.348Z",
+      "id": 5
     }
   ]
 }

@@ -1,18 +1,21 @@
-import { useContextSelector } from 'use-context-selector';
 import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react';
 import { Controller, useForm } from 'react-hook-form';
+import { useContextSelector } from 'use-context-selector';
 import * as z from 'zod';
 import * as Dialog from '@radix-ui/react-dialog';
 import { zodResolver } from '@hookform/resolvers/zod';
+
 import { TransactionsContext } from '../../contexts/TransactionsContext';
 
 import {
-  CloseButton,
+  TopCloseButton,
   Content,
+  Description,
   Overlay,
   TransactionType,
   TransactionTypeButton
 } from './styles';
+import { Dispatch, SetStateAction } from 'react';
 
 const newTransactionFormSchema = z.object({
   description: z.string(),
@@ -23,7 +26,11 @@ const newTransactionFormSchema = z.object({
 
 type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>;
 
-export function NewTransactionModal() {
+type NewTransactionModalProps = {
+  setOpen: Dispatch<SetStateAction<boolean>>;
+};
+
+export function NewTransactionModal({ setOpen }: NewTransactionModalProps) {
   const createTransactions = useContextSelector(
     TransactionsContext,
     context => {
@@ -54,6 +61,7 @@ export function NewTransactionModal() {
       type
     });
 
+    setOpen(false);
     reset();
   }
 
@@ -63,10 +71,11 @@ export function NewTransactionModal() {
 
       <Content>
         <Dialog.Title>Nova transação</Dialog.Title>
+        <Description>Insira suas entradas ou saídas</Description>
 
-        <CloseButton>
+        <TopCloseButton>
           <X size={24} />
-        </CloseButton>
+        </TopCloseButton>
 
         <form onSubmit={handleSubmit(handleCreateNewTransaction)}>
           <input
