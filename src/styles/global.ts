@@ -1,10 +1,19 @@
 import { createGlobalStyle } from 'styled-components';
+import { DEVICE_BREAKPOINTS } from './deviceBreakPoints';
 
 export const GlobalStyle = createGlobalStyle`
   *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+
+  :root {
+    font-size: 16px;
+
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+      font-size: 12px;
+    }
   }
 
   :focus {

@@ -15,6 +15,7 @@ import {
   Content,
   Description,
   Overlay,
+  Title,
   TopCloseButton,
   TransactionType,
   TransactionTypeButton
@@ -64,7 +65,7 @@ export function NewTransactionModal({ setOpen }: NewTransactionModalProps) {
       <Overlay />
 
       <Content>
-        <Dialog.Title>Nova transação</Dialog.Title>
+        <Title>Nova transação</Title>
         <Description>Insira suas entradas ou saídas</Description>
 
         <TopCloseButton>

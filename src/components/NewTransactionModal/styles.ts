@@ -2,10 +2,7 @@ import styled from 'styled-components';
 import * as Dialog from '@radix-ui/react-dialog';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 
-export const Description = styled(Dialog.Description)`
-  color: ${props => props.theme['gray-400']};
-  margin-top: 0.5rem;
-`;
+import { DEVICE_BREAKPOINTS } from '../../styles/deviceBreakPoints';
 
 export const Overlay = styled(Dialog.Overlay)`
   position: fixed;
@@ -13,6 +10,24 @@ export const Overlay = styled(Dialog.Overlay)`
   height: 100vh;
   inset: 0;
   background: rgba(0, 0, 0, 0.75);
+`;
+
+export const Title = styled(Dialog.Title)`
+  font-size: 1.5rem;
+
+  @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+    font-size: 20px;
+  }
+`;
+
+export const Description = styled(Dialog.Description)`
+  color: ${props => props.theme['gray-400']};
+  margin-top: 0.5rem;
+  font-size: 1rem;
+
+  @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+    font-size: 16px;
+  }
 `;
 
 export const Content = styled(Dialog.Content)`
@@ -25,6 +40,22 @@ export const Content = styled(Dialog.Content)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+    width: 100%;
+    height: 80rem;
+
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+
+    overflow: hidden;
+    top: 100%;
+    left: 50%;
+    bottom: 50%;
+    transform: translate(-50%, -50%);
+  }
 
   form {
     margin-top: 2rem;
@@ -64,6 +95,14 @@ export const Content = styled(Dialog.Content)`
       &:not(:disabled):hover {
         background: ${props => props.theme['green-700']};
         transition: background-color 0.2s;
+      }
+    }
+
+    @media (max-width: ${DEVICE_BREAKPOINTS.MD}) {
+      input,
+      button {
+        font-size: 16px;
+        padding: 16px;
       }
     }
   }
